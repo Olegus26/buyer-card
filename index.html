@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Покупатели макет</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar" aria-label="Левая панель">
+
+    <div class="sb-item" title="Главная">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M12 3 3 10v11h6v-7h6v7h6V10l-9-7z"/></svg>
+    </div>
+
+    <div class="sb-item active" title="Покупатели">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-4 0-8 2-8 5v2h16v-2c0-3-4-5-8-5Z"/></svg>
+    </div>
+
+    <div class="sb-item" title="Недвижимость">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20a2 2 0 0 1-2 2h-4v-7H10v7H6a2 2 0 0 1-2-2v-9.5Z"/></svg>
+    </div>
+
+    <div class="sb-item" title="Подборки / корзина">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M7 18a2 2 0 1 0 2 2 2 2 0 0 0-2-2Zm10 0a2 2 0 1 0 2 2 2 2 0 0 0-2-2ZM7.2 6h14.3l-1.3 7.2a2 2 0 0 1-2 1.6H8.1a2 2 0 0 1-2-1.6L4.2 3H2V1h3.6l1.6 5Z"/></svg>
+    </div>
+
+    <div class="sb-spacer"></div>
+
+    <div class="sb-item" title="Настройки">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"/></svg>
+    </div>
+
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <!-- Topbar -->
+   <header class="topbar">
+  <div class="topbar__inner">
+    <div class="topbar-left"></div> <!-- пустышка слева -->
+
+    <div class="user">
+      <div class="avatar">О</div>
+      <div><b>Омельченко</b> • агент</div>
+    </div>
+  </div>
+</header>
+
+
+    <!-- Content -->
+    <div class="content">
+      <div class="crumbs">
+        <a href="#">Главная</a> / <span>Покупатели</span>
+      </div>
+      <h1>Покупатели</h1>
+
+      <div class="container">
+
+        <!-- Card: Client -->
+        <div class="card">
+          <div class="card__head">
+            <div class="card__title">👤 Карточка клиента <span class="mini">ID: <span id="clientId">79964</span></span></div>
+          </div>
+          <div class="card__body">
+            <div class="grid2">
+              <div class="field">
+                <label>ФИО клиента</label>
+                <input id="fio" placeholder="Например: Иванов Иван" />
+              </div>
+              <div class="field">
+                <label>День рождения</label>
+                <input id="bday" type="date" />
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="grid3">
+
+<div class="field">
+                <label>Экслюзив</label>
+                <select id="lead">
+                  <option>Нет</option>
+                  <option>Экслюзив</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Ведёт клиента</label>
+                <select id="lead">
+                  <option>Моисеева Наталья Николаевна [67085]</option>
+                  <option>Омельченко Олег [*****]</option>
+                  <option>Другой сотрудник…</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Внёс</label>
+                <div><b>Моисеева Наталья Николаевна</b> • [67085]</div>
+              </div>
+
+              <div class="field">
+                <label>Телефоны</label>
+                <div id="phones"></div>
+                <button class="linkbtn" type="button" id="addPhoneBtn">➕ Добавить ещё телефон</button>
+              </div>
+
+              <div class="field">
+                <label>Активный</label>
+                <select id="active">
+                  <option value="yes" selected>Да</option>
+                  <option value="no">Нет</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Requirements -->
+        <div class="card">
+          <div class="card__head">
+            <div class="card__title">🎯 Требования покупателя</div>
+            <div class="row" style="gap:8px">
+              <select id="reqPicker" style="width: 240px; height:36px; border-radius:12px">
+                <option value="" selected disabled>+ Добавить параметр…</option>
+              </select>
+              <button class="btn" type="button" id="addReqBtn">Добавить</button>
+            </div>
+          </div>
+          <div class="card__body">
+
+            <div class="grid2" style="margin-bottom:12px">
+              <div class="field">
+                <label>Сниму / Куплю</label>
+                <select id="dealType">
+                  <option value="buy" selected>Куплю</option>
+                  <option value="rent">Сниму</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Комментарий к запросу (коротко)</label>
+                <input id="reqNote" placeholder="Например: возле метро, без 1-го этажа…" />
+              </div>
+            </div>
+
+            <div id="reqList"></div>
+          </div>
+        </div>
+
+        <!-- Card: Status -->
+        <div class="card">
+          <div class="card__head">
+            <div class="card__title">📊 Статус</div>
+          </div>
+          <div class="card__body">
+            <div class="grid2">
+              <div class="field">
+                <label>Статус сделки</label>
+                <select id="status">
+                  <option selected>Новый</option>
+                  <option>В подборе</option>
+                  <option>Показы</option>
+                  <option>Думает</option>
+                  <option>Сделка</option>
+                  <option>Отказ</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Источник</label>
+                <select id="source">
+                  <option selected>Не указано</option>
+                  <option>Сайт</option>
+                  <option>OLX</option>
+                  <option>Realtor.ua</option>
+                  <option>Рекомендация</option>
+                  <option>Звонок</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Notes + actions -->
+        <div class="card">
+          <div class="card__head">
+            <div class="card__title">📝 Примечания</div>
+          </div>
+          <div class="card__body">
+            <div class="field">
+              <label>Заметка по клиенту</label>
+              <textarea id="notes" placeholder="Сроки, бюджет, кто принимает решение, нюансы по локации…"></textarea>
+            </div>
+
+            <div class="actions">
+              <button class="btn" type="button" id="saveBtn">💾 Сохранить</button>
+              <button class="btn primary" type="button" id="savePickBtn">🔎 Сохранить и подобрать варианты</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== Drawer: Подбор вариантов (ДЕМО) ===================== -->
+<div class="drawer-backdrop" id="pickBackdrop" hidden></div>
+
+<aside class="drawer" id="pickDrawer" aria-hidden="true">
+ <div class="drawer__head">
+  <button id="pickClose" type="button" class="drawer__close">✕</button>
+
+
+  <div class="drawer__title center">
+    Подобранные варианты
+  </div>
+
+  <div class="drawer__spacer"></div>
+</div>
+
+  <div class="drawer__body">
+  <div class="pick-list" id="pickListObjects"></div>
+</div>
+
+  <div class="drawer__body">
+    <div class="pick-list" id="pickListObjects"></div>
+    <div class="pick-list" id="pickListPeople" hidden></div>
+  </div>
+</aside>
+<!-- ========================================================================== -->
+
+
+
+<script src="./script.js"></script>
+</body>
+</html>
