@@ -35,14 +35,12 @@ body{
   background:var(--bg);
 }
 
-/* Layout */
 .app{
   display:grid;
   grid-template-columns: 76px 1fr;
   min-height:100vh;
 }
 
-/* Sidebar */
 .sidebar{
   position:sticky;
   top:0;
@@ -99,14 +97,12 @@ body{
   fill: currentColor;
 }
 
-/* Main */
 .main{
   display:flex;
   flex-direction:column;
   min-width:0;
 }
 
-/* Topbar */
 .topbar{
   position:sticky; top:0; z-index:60;
   background:var(--top);
@@ -149,7 +145,6 @@ body{
   font-weight:800;
 }
 
-/* Content */
 .content{
   padding: 16px 18px 30px;
   min-width:0;
@@ -171,7 +166,6 @@ h1{
   max-width: var(--container);
 }
 
-/* Cards */
 .card{
   background: var(--card);
   border:1px solid var(--border);
@@ -203,7 +197,6 @@ h1{
 }
 .card__body{ padding: 14px; }
 
-/* Grids */
 .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
 .grid3{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--gap); }
 
@@ -216,7 +209,6 @@ h1{
   .grid2, .grid3{ grid-template-columns: 1fr; }
 }
 
-/* Fields */
 .field label{
   display:block;
   font-size:12px;
@@ -303,9 +295,6 @@ input:focus, select:focus, textarea:focus{
   margin: 12px 0;
 }
 
-/* ===== Requirements ===== */
-
-/* 2 карточки в ряд */
 #reqList{
   display:grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -313,26 +302,23 @@ input:focus, select:focus, textarea:focus{
   align-items: start;
 }
 
-/* на планшете/мобиле — 1 колонка */
 @media (max-width: 980px){
   #reqList{ grid-template-columns: 1fr; }
 }
 
-/* одинаковые карточки */
 .req-item{
   border:1px solid rgba(217,226,234,.95);
   background:#fff;
   border-radius: 14px;
   padding: 10px;
 
-  height: 140px;          /* фикс высота = одинаковые */
+  height: 140px;
   overflow: hidden;
 
   display:flex;
   flex-direction:column;
 }
 
-/* убираем старый нижний отступ (теперь gap) */
 #reqList .req-item{ margin-bottom: 0; }
 
 .req-head{
@@ -359,17 +345,15 @@ input:focus, select:focus, textarea:focus{
   border:1px solid rgba(30,136,229,.22);
 }
 
-/* основная часть карточки — занимает место, при переполнении скролл */
 .req-body{
   flex: 1;
   overflow: auto;
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  padding-right: 2px; /* чтобы скролл не налезал */
+  padding-right: 2px;
 }
 
-/* если поле одно — пусть занимает 2 колонки ВНУТРИ карточки (но карточка не растягивается) */
 .req-body .field:only-child{
   grid-column: 1 / -1;
 }
@@ -378,13 +362,11 @@ input:focus, select:focus, textarea:focus{
   .req-body{ grid-template-columns: 1fr; }
 }
 
-/* чтобы инпуты не раздували сетку */
 .req-item select,
 .req-item input{
   min-width: 0;
 }
 
-/* Actions */
 .actions{
   display:flex;
   justify-content:flex-end;
@@ -421,7 +403,6 @@ input:focus, select:focus, textarea:focus{
   text-align:right;
 }
 
-/* Toast */
 .toast{
   position: fixed;
   right: 16px;
@@ -470,7 +451,6 @@ input:focus, select:focus, textarea:focus{
   box-shadow: 0 0 0 3px rgba(239,68,68,.10);
 }
 
-/* ===================== Drawer: Подбор вариантов (ДЕМО) ===================== */
 .drawer-backdrop[hidden]{ display:none; }
 .drawer-backdrop{
   position: fixed;
@@ -624,8 +604,8 @@ input:focus, select:focus, textarea:focus{
 
 .drawer__body{
   flex: 1 1 auto;
-  min-height: 0;          /* КРИТИЧНО для flex, чтобы скролл работал */
-  overflow: auto;         /* скролл ТУТ */
+  min-height: 0;
+  overflow: auto;
   padding: 8px 0;
 }
 
@@ -716,4 +696,3 @@ input:focus, select:focus, textarea:focus{
   box-shadow: 0 0 0 3px rgba(30,136,229,.10);
   color: var(--text);
 }
-/* ========================================================================== */

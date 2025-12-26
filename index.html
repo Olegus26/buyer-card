@@ -9,7 +9,6 @@
 <body>
 
 <div class="app">
-  <!-- Sidebar -->
   <aside class="sidebar" aria-label="Левая панель">
 
     <div class="sb-item" title="Главная">
@@ -36,12 +35,11 @@
 
   </aside>
 
-  <!-- Main -->
   <div class="main">
-    <!-- Topbar -->
+   <header class="topbar">
    <header class="topbar">
   <div class="topbar__inner">
-    <div class="topbar-left"></div> <!-- пустышка слева -->
+  <div class="topbar-left"></div>
 
     <div class="user">
       <div class="avatar">О</div>
@@ -51,7 +49,6 @@
 </header>
 
 
-    <!-- Content -->
     <div class="content">
       <div class="crumbs">
         <a href="#">Главная</a> / <span>Покупатели</span>
@@ -60,7 +57,7 @@
 
       <div class="container">
 
-        <!-- Card: Client -->
+        <div class="card">
         <div class="card">
           <div class="card__head">
             <div class="card__title">👤 Карточка клиента <span class="mini">ID: <span id="clientId">79964</span></span></div>
@@ -121,8 +118,7 @@
           </div>
         </div>
 
-        <!-- Card: Requirements -->
-        <div class="card">
+  <div class="card">
           <div class="card__head">
             <div class="card__title">🎯 Требования покупателя</div>
             <div class="row" style="gap:8px">
@@ -152,8 +148,7 @@
           </div>
         </div>
 
-        <!-- Card: Status -->
-        <div class="card">
+  <div class="card">
           <div class="card__head">
             <div class="card__title">📊 Статус</div>
           </div>
@@ -185,8 +180,7 @@
           </div>
         </div>
 
-        <!-- Card: Notes + actions -->
-        <div class="card">
+  <div class="card">
           <div class="card__head">
             <div class="card__title">📝 Примечания</div>
           </div>
@@ -208,13 +202,11 @@
   </div>
 </div>
 
-<!-- ===================== Drawer: Подбор вариантов (ДЕМО) ===================== -->
 <div class="drawer-backdrop" id="pickBackdrop" hidden></div>
 
 <aside class="drawer" id="pickDrawer" aria-hidden="true">
  <div class="drawer__head">
   <button id="pickClose" type="button" class="drawer__close">✕</button>
-
 
   <div class="drawer__title center">
     Подобранные варианты
@@ -232,7 +224,6 @@
     <div class="pick-list" id="pickListPeople" hidden></div>
   </div>
 </aside>
-<!-- ========================================================================== -->
 
 
 

@@ -4,7 +4,6 @@
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  // ---------- UI state for buttons ----------
   const ACTION_LABELS = {
     save: "💾 Сохранить",
     delete: "🗑️ Удалить",
@@ -13,9 +12,7 @@
   };
 
   const actionState = {
-    // saved = “последние изменения сохранены”
     saved: false,
-    // dirty = “после сохранения что-то поменяли”
     dirty: false,
   };
 
@@ -48,16 +45,13 @@
     if (!saveBtn || !savePickBtn) return;
 
     if (isSavedClean()) {
-      // Save -> Delete
       saveBtn.textContent = ACTION_LABELS.delete;
       saveBtn.dataset.mode = "delete";
       saveBtn.classList.add("danger");
 
-      // Save+Pick -> Pick
       savePickBtn.textContent = ACTION_LABELS.pick;
       savePickBtn.dataset.mode = "pick";
     } else {
-      // default state
       saveBtn.textContent = ACTION_LABELS.save;
       saveBtn.dataset.mode = "save";
       saveBtn.classList.remove("danger");
@@ -67,7 +61,6 @@
     }
   }
 
-  // ---------- Toast ----------
   function showToast(payload) {
     const toast = $("#toast");
     const toastBody = $("#toastBody");
@@ -80,7 +73,6 @@
     $("#toastClose")?.addEventListener("click", () => $("#toast")?.classList.remove("show"));
   }
 
-  // ---------- Active toggle (если будет pill/label) ----------
   function initActiveToggle() {
     const activeSel = $("#active");
     const activeLabel = $("#clientActiveLabel");
@@ -106,7 +98,6 @@
     });
   }
 
-  // ---------- Phones ----------
   function initPhones() {
     const phonesWrap = $("#phones");
     const addPhoneBtn = $("#addPhoneBtn");
@@ -123,7 +114,6 @@
         <button class="iconbtn danger" type="button" title="Удалить телефон" aria-label="Удалить">✕</button>
       `;
 
-      // удалить телефон => это изменение
       row.querySelector("button")?.addEventListener("click", () => {
         row.remove();
         setDirty();
@@ -138,11 +128,9 @@
       setDirty();
     });
 
-    // стартовый телефон (не считаем “грязным”)
     phonesWrap.appendChild(phoneRow(""));
   }
 
-  // ---------- Requirements ----------
   function initRequirements() {
     const reqPicker = $("#reqPicker");
     const reqList = $("#reqList");
@@ -338,7 +326,6 @@
       
       `;
 
-      // удалить карточку => изменение
       wrap.querySelector("button")?.addEventListener("click", () => {
         const idx = reqState.findIndex((x) => x.type === state.type);
         if (idx >= 0) reqState.splice(idx, 1);
@@ -347,7 +334,6 @@
         setDirty();
       });
 
-      // обновления полей => изменение
       wrap.addEventListener("change", (e) => {
         const el = e.target;
         if (!(el instanceof HTMLElement)) return;
@@ -377,7 +363,6 @@
       return wrap;
     }
 
-    // чтобы стартовые параметры НЕ считались “изменением”
     let boot = true;
 
     function addRequirement(typeKey) {
@@ -395,7 +380,6 @@
     addReqBtn.addEventListener("click", () => addRequirement(reqPicker.value));
     reqPicker.addEventListener("change", () => addRequirement(reqPicker.value));
 
-    // стартовые параметры
     addRequirement("propertyType");
     addRequirement("district");
     addRequirement("price");
@@ -403,12 +387,10 @@
 
     refreshReqPicker();
 
-    // expose for collectData
     window.__REQ_STATE__ = reqState;
     window.__REQ__ = REQ;
   }
 
-  // ---------- collectData ----------
   function collectData() {
     const phones = $$("#phones input").map((i) => i.value.trim()).filter(Boolean);
     const REQ = window.__REQ__ || {};
@@ -441,17 +423,14 @@
     };
   }
 
-  // ---------- Dirty tracking (для обычных полей формы) ----------
   function initDirtyTracking() {
     const handler = (e) => {
       const t = e.target;
       if (!(t instanceof HTMLElement)) return;
 
-      // изменения в тосте/дроувере не считаем "правками формы"
       if (t.closest("#toast")) return;
       if (t.closest("#pickDrawer")) return;
 
-      // клик по кнопкам не должен делать dirty
       if (t.closest(".actions")) return;
 
       if (t.matches("input, textarea, select")) {
@@ -463,7 +442,6 @@
     document.addEventListener("change", handler, true);
   }
 
-  // ===================== Drawer: подбор вариантов (ДЕМО) =====================
   const PICK = {
     open: false,
     tab: "objects",
@@ -575,7 +553,6 @@
 
   renderPickListObjects(demo.objects);
 
-  // если есть подзаголовок — можешь оставить или убрать
   const sub = $("#pickSubtitle");
   if (sub) {
     const deal = payload?.request?.dealType === "rent" ? "Сниму" : "Куплю";
@@ -619,20 +596,16 @@
       if (e.key === "Escape" && PICK.open) closePickDrawer();
     });
   }
-  // ==========================================================================
 
-  // ---------- Actions ----------
   function initActions() {
     const saveBtn = $("#saveBtn");
     const savePickBtn = $("#savePickBtn");
     if (!saveBtn || !savePickBtn) return;
 
-    // старт: обычные подписи
     updateActionButtons();
 
     saveBtn.addEventListener("click", () => {
       if (isSavedClean()) {
-        // DELETE mode
         setDeleted();
         return;
       }
@@ -642,7 +615,6 @@
 
     savePickBtn.addEventListener("click", () => {
       if (isSavedClean()) {
-        // PICK ONLY mode (без сохранения)
         const data = collectData();
         showToast({
           action: "pick_only",
@@ -653,7 +625,6 @@
         return;
       }
 
-      // SAVE + PICK mode
       const data = collectData();
       showToast({
         action: "save_and_pick",
@@ -665,7 +636,6 @@
     });
   }
 
-  // ---------- boot ----------
   document.addEventListener("DOMContentLoaded", () => {
     initActiveToggle();
     initPhones();
